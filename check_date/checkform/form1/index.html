@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <script>
+            function setDay(v)
+            {
+            // Latch onto the select we are updating by ID (day)
+            var select = document.getElementById("day");
+
+
+            // Set end day depending on the month (you could use IF statements to combine months actually)
+            switch(v)
+            {
+                case "january":
+                // Set end day to 31
+                endday = 31;
+                break;
+
+                case "february":
+                // Set end day to 29 (you'll need to account for leap years)
+                endday = 29;
+                break;
+
+                case "march":
+                // Set end day to 31
+                endday = 31;
+                break;
+            }
+
+            // Loop from 1 to endday creating select options
+            for(i=1;i<=endday;i++)
+            {
+                select.options[i] = new Option(i, i, true, false);
+            }
+            }
+        </script>
+    </head>
+    <body>
+        <form action="showday.php" method="POST">
+        <select name="month" onchange="setDay(this.value)">
+
+            <option value="january">January</option>
+            <option value="february">February</option>
+            <option value="march">March</option>
+            ... and so on
+            </select>
+            
+            <select name="day" id="day">
+               <option value="1"> 1</option>
+               <option value="2"> 2</option>
+               <option value="3"> 3</option>
+               ... and so on to 31; probably don't need these at all to be honest ...
+            </select> 
+            <input type="submit" value="showday">
+        </form>
+    </body>
+</html>
